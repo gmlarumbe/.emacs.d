@@ -24,15 +24,15 @@
 ;;  modi/verilog-mode-customization
 ;;  Key bindings
 
-(use-package verilog-mode
-  :load-path "elisp/verilog-mode"
-  :mode (("\\.[st]*v[hp]*\\'" . verilog-mode) ;.v, .sv, .svh, .tv, .vp
-         ("\\.f\\'"         . verilog-mode)   ;verilog file lists
-         ("\\.psl\\'"         . verilog-mode)
-         ("\\.vams\\'"        . verilog-mode)
-         ("\\.vinc\\'"        . verilog-mode))
-  :config
-  (progn
+;; (use-package verilog-mode
+;;   :load-path "elisp/verilog-mode"
+;;   :mode (("\\.[st]*v[hp]*\\'" . verilog-mode) ;.v, .sv, .svh, .tv, .vp
+;;          ("\\.f\\'"         . verilog-mode)   ;verilog file lists
+;;          ("\\.psl\\'"         . verilog-mode)
+;;          ("\\.vams\\'"        . verilog-mode)
+;;          ("\\.vinc\\'"        . verilog-mode))
+;;   :config
+;;   (progn
 
     (defvar modi/verilog-indent-level 2
       "Variable to set all `verilog-mode' indents.
@@ -779,6 +779,7 @@ _a_lways         _f_or              _g_enerate         _O_utput
     (bind-chord "\\\\" #'modi/verilog-jump-to-module-at-point verilog-mode-map) ;"\\"
     (when (executable-find "ag")
       (bind-chord "^^" #'modi/verilog-find-parent-module verilog-mode-map))))
+;; ))
 
 
 (provide 'setup-verilog)
