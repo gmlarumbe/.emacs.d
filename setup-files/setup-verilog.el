@@ -41,23 +41,23 @@ Sets `verilog-indent-level', `verilog-indent-level-module',
 `verilog-indent-level-directive' and `verilog-case-indent'.")
 
 ;;; Variables
-    (setq verilog-indent-level modi/verilog-indent-level)             ;3 (default)
-    (setq verilog-indent-level-module modi/verilog-indent-level)      ;3
-    (setq verilog-indent-level-declaration modi/verilog-indent-level) ;3
-    (setq verilog-indent-level-behavioral modi/verilog-indent-level)  ;3
-    (setq verilog-indent-level-directive modi/verilog-indent-level)   ;1
-    (setq verilog-case-indent modi/verilog-indent-level)              ;2
+    ;; (setq verilog-indent-level modi/verilog-indent-level)             ;3 (default)
+    ;; (setq verilog-indent-level-module modi/verilog-indent-level)      ;3
+    ;; (setq verilog-indent-level-declaration modi/verilog-indent-level) ;3
+    ;; (setq verilog-indent-level-behavioral modi/verilog-indent-level)  ;3
+    ;; (setq verilog-indent-level-directive modi/verilog-indent-level)   ;1
+    ;; (setq verilog-case-indent modi/verilog-indent-level)              ;2
 
-    (setq verilog-auto-newline             nil) ;t
-    (setq verilog-auto-indent-on-newline   t)   ;t
-    (setq verilog-tab-always-indent        t)   ;t
-    (setq verilog-minimum-comment-distance 10)  ;10
-    (setq verilog-indent-begin-after-if    t)   ;t
-    (setq verilog-auto-lineup              nil) ;'declarations
-    (setq verilog-align-ifelse             nil) ;nil
-    (setq verilog-auto-endcomments         t)   ;t
-    (setq verilog-tab-to-comment           nil) ;nil
-    (setq verilog-date-scientific-format   t)   ;t
+    ;; (setq verilog-auto-newline             nil) ;t
+    ;; (setq verilog-auto-indent-on-newline   t)   ;t
+    ;; (setq verilog-tab-always-indent        t)   ;t
+    ;; (setq verilog-minimum-comment-distance 10)  ;10
+    ;; (setq verilog-indent-begin-after-if    t)   ;t
+    ;; (setq verilog-auto-lineup              nil) ;'declarations
+    ;; (setq verilog-align-ifelse             nil) ;nil
+    ;; (setq verilog-auto-endcomments         t)   ;t
+    ;; (setq verilog-tab-to-comment           nil) ;nil
+    ;; (setq verilog-date-scientific-format   t)   ;t
 
     (defconst modi/verilog-identifier-re
       (concat "\\_<\\(?:"
@@ -353,14 +353,14 @@ point."
 
 ;;;; which-func
     (with-eval-after-load 'which-func
-      (add-to-list 'which-func-modes 'verilog-mode)
+      ;; (add-to-list 'which-func-modes 'verilog-mode)
 
 ;;;;; modi/verilog-which-func
       (defun modi/verilog-which-func ()
         (setq-local which-func-functions '(modi/verilog-find-module-instance
                                            modi/verilog-get-header))
         (which-function-mode))
-      (add-hook 'verilog-mode-hook #'modi/verilog-which-func)
+      ;; (add-hook 'verilog-mode-hook #'modi/verilog-which-func)
 
 ;;;;; modi/verilog-update-which-func-format
       (defun modi/verilog-update-which-func-format ()
@@ -533,9 +533,9 @@ The match with \"//.\" resolves this issue:
             (delete-horizontal-space))
           do-not-run-orig-fn)))
     ;; Advise the indentation behavior of `indent-region' done using `C-M-\'
-    (advice-add 'verilog-indent-line-relative :before-until #'modi/verilog-selective-indent)
+    ;; (advice-add 'verilog-indent-line-relative :before-until #'modi/verilog-selective-indent)
     ;; Advise the indentation done by hitting `TAB'
-    (advice-add 'verilog-indent-line :before-until #'modi/verilog-selective-indent)
+    ;; (advice-add 'verilog-indent-line :before-until #'modi/verilog-selective-indent)
 
 ;;;; modi/verilog-compile
     (defun modi/verilog-compile (option)
@@ -610,12 +610,12 @@ for all the `included files."
           (advice-remove 'verilog-read-defines #'modi/verilog-do-not-read-defines))))
 
 ;;; hideshow
-    (with-eval-after-load 'hideshow
-      (add-to-list 'hs-special-modes-alist
-                   `(verilog-mode ,modi/verilog-block-start-keywords-re
-                                  ,modi/verilog-block-end-keywords-re
-                                  nil
-                                  verilog-forward-sexp-function)))
+    ;; (with-eval-after-load 'hideshow
+    ;;   (add-to-list 'hs-special-modes-alist
+    ;;                `(verilog-mode ,modi/verilog-block-start-keywords-re
+    ;;                               ,modi/verilog-block-end-keywords-re
+    ;;                               nil
+    ;;                               verilog-forward-sexp-function)))
 
 ;;; hydra-verilog-template
     (defhydra hydra-verilog-template (:color blue
@@ -744,11 +744,12 @@ _a_lways         _f_or              _g_enerate         _O_utput
             (delete (rassoc 'verilog-font-lock-ams-face verilog-font-lock-keywords-3)
                     verilog-font-lock-keywords-3))
 
-      (with-eval-after-load 'outshine
-        ;; Do not require the "// *" style comments used by `outshine' to
-        ;; start at column 0 just for this major mode.
-        (setq-local modi/outshine-allow-space-before-heading t)
-        (add-hook 'outshine-mode-hook #'modi/verilog-outshine-imenu-generic-expression nil :local)))
+      ;; (with-eval-after-load 'outshine
+      ;;   ;; Do not require the "// *" style comments used by `outshine' to
+      ;;   ;; start at column 0 just for this major mode.
+      ;;   (setq-local modi/outshine-allow-space-before-heading t)
+      ;;   (add-hook 'outshine-mode-hook #'modi/verilog-outshine-imenu-generic-expression nil :local))
+      )
 
     ;; Fri Aug 25 10:51:34 EDT 2017 - kmodi
     ;; Above, the `modi/outshine-allow-space-before-heading' variable
@@ -758,27 +759,27 @@ _a_lways         _f_or              _g_enerate         _O_utput
     ;; to `verilog-mode-hook'. This ensures that that variable is set
     ;; correctly *before* `outline-minor-mode' is enabled (the act of
     ;; which enables `outshine-mode').
-    (add-hook 'verilog-mode-hook #'modi/verilog-mode-customization)
+    ;; (add-hook 'verilog-mode-hook #'modi/verilog-mode-customization)
 
 ;;; Key bindings
-    (bind-keys
-     :map verilog-mode-map
-     ;; Unbind the backtick binding done to `electric-verilog-tick'
-     ;; With binding done to `electric-verilog-tick', it's not possible to type
-     ;; backticks on multiple lines simultaneously in multiple-cursors mode.
-     ("`"         . nil)
-     ;; Bind `verilog-header' to "C-c C-H" instead of to "C-c C-h"
-     ("C-c C-h"   . nil)
-     ("C-c C-S-h" . verilog-header)
-     ;;
-     ("C-c C-t"   . hydra-verilog-template/body)
-     ("C-^"       . modi/verilog-jump-to-header-dwim)
-     ("C-&"       . modi/verilog-jump-to-header-dwim-fwd)
-     ("<f9>"      . modi/verilog-compile)
-     ("<S-f9>"    . modi/verilog-simulate))
-    (bind-chord "\\\\" #'modi/verilog-jump-to-module-at-point verilog-mode-map) ;"\\"
-    (when (executable-find "ag")
-      (bind-chord "^^" #'modi/verilog-find-parent-module verilog-mode-map))))
+    ;; (bind-keys
+    ;;  :map verilog-mode-map
+    ;;  ;; Unbind the backtick binding done to `electric-verilog-tick'
+    ;;  ;; With binding done to `electric-verilog-tick', it's not possible to type
+    ;;  ;; backticks on multiple lines simultaneously in multiple-cursors mode.
+    ;;  ("`"         . nil)
+    ;;  ;; Bind `verilog-header' to "C-c C-H" instead of to "C-c C-h"
+    ;;  ("C-c C-h"   . nil)
+    ;;  ("C-c C-S-h" . verilog-header)
+    ;;  ;;
+    ;;  ("C-c C-t"   . hydra-verilog-template/body)
+    ;;  ("C-^"       . modi/verilog-jump-to-header-dwim)
+    ;;  ("C-&"       . modi/verilog-jump-to-header-dwim-fwd)
+    ;;  ("<f9>"      . modi/verilog-compile)
+    ;;  ("<S-f9>"    . modi/verilog-simulate))
+    ;; (bind-chord "\\\\" #'modi/verilog-jump-to-module-at-point verilog-mode-map) ;"\\"
+    ;; (when (executable-find "ag")
+    ;;   (bind-chord "^^" #'modi/verilog-find-parent-module verilog-mode-map))
 ;; ))
 
 
